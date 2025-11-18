@@ -66,12 +66,12 @@ const AchievementsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary text-glow-cyan mb-4">
-            GALACTIC MISSION BADGES
+          <h2 className="text-4xl md:text-6xl font-bold text-primary text-glow-cyan mb-4 tracking-tight">
+            Achievements
           </h2>
-          <div className="h-0.5 w-32 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent" />
-          <p className="mt-4 text-muted-foreground font-mono">
-            &lt; ACHIEVEMENTS_UNLOCKED &gt;
+          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-glow" />
+          <p className="mt-6 text-muted-foreground font-mono text-lg">
+            Recognition & Honors
           </p>
         </motion.div>
 
@@ -94,11 +94,12 @@ const AchievementsSection = () => {
               >
                 {/* Card */}
                 <div className={`
-                  relative p-6 rounded-lg border
-                  bg-card/50 backdrop-blur-sm
-                  border-${achievement.color}/30
+                  relative p-8 rounded-xl border-2
+                  bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-md
+                  border-${achievement.color}/40
                   hover:border-${achievement.color}
-                  transition-all duration-300
+                  transition-all duration-500
+                  shadow-2xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]
                 `}>
                   {/* Glow Effect */}
                   <div className={`

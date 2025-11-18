@@ -46,12 +46,12 @@ const SkillsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-tertiary mb-4">
-            HOLOGRAM CAPABILITY GRID
+          <h2 className="text-4xl md:text-6xl font-bold text-tertiary mb-4 tracking-tight">
+            Skills & Capabilities
           </h2>
-          <div className="h-0.5 w-32 mx-auto bg-gradient-to-r from-transparent via-tertiary to-transparent" />
-          <p className="mt-4 text-muted-foreground font-mono">
-            &lt; SKILL_MATRIX &gt;
+          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-tertiary to-transparent animate-pulse-glow" />
+          <p className="mt-6 text-muted-foreground font-mono text-lg">
+            Technical Proficiency
           </p>
         </motion.div>
 
@@ -70,11 +70,12 @@ const SkillsSection = () => {
               >
                 {/* Skill Container */}
                 <div className={`
-                  relative p-6 rounded-lg border
-                  bg-card/20 backdrop-blur-sm
-                  border-${skill.color}/30
+                  relative p-8 rounded-xl border-2
+                  bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-md
+                  border-${skill.color}/40
                   hover:border-${skill.color}
-                  transition-all duration-300
+                  transition-all duration-500
+                  shadow-2xl hover:shadow-[0_0_30px_rgba(100,200,255,0.3)]
                 `}>
                   {/* Glow Effect */}
                   <div className={`

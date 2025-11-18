@@ -44,7 +44,7 @@ const HeroSection = () => {
           >
             <div className="relative group">
               {/* Outer Hexagonal Glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary via-secondary to-accent rounded-full opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500" />
+              <div className="absolute -inset-8 bg-gradient-to-r from-primary via-secondary to-accent rounded-full opacity-40 blur-3xl group-hover:opacity-70 transition-opacity duration-500 animate-pulse" />
               
               {/* Photo Container */}
               <div className="relative w-64 h-64 md:w-80 md:h-80">

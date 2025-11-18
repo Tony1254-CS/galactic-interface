@@ -62,12 +62,12 @@ const ProjectsSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-accent text-glow-blue mb-4">
-            FUTURISTIC DATA PANELS
+          <h2 className="text-4xl md:text-6xl font-bold text-accent text-glow-blue mb-4 tracking-tight">
+            Projects & Expertise
           </h2>
-          <div className="h-0.5 w-32 mx-auto bg-gradient-to-r from-transparent via-accent to-transparent" />
-          <p className="mt-4 text-muted-foreground font-mono">
-            &lt; PROJECT_ARCHIVES &gt;
+          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-accent to-transparent animate-pulse-glow" />
+          <p className="mt-6 text-muted-foreground font-mono text-lg">
+            Areas of Focus
           </p>
         </motion.div>
 
@@ -91,12 +91,13 @@ const ProjectsSection = () => {
               >
                 {/* Card */}
                 <div className={`
-                  relative h-full p-6 rounded-lg border
-                  bg-card/40 backdrop-blur-md
-                  border-${project.color}/30
+                  relative h-full p-8 rounded-xl border-2
+                  bg-gradient-to-br from-card/70 to-card/40 backdrop-blur-lg
+                  border-${project.color}/40
                   hover:border-${project.color}
-                  transition-all duration-300
+                  transition-all duration-500
                   transform-gpu
+                  shadow-2xl hover:shadow-[0_0_40px_rgba(0,150,255,0.4)]
                 `}>
                   {/* Holographic Glow */}
                   <div className={`

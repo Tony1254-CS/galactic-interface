@@ -36,12 +36,12 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary text-glow-cyan mb-4">
-            STARSHIP COMMS CONSOLE
+          <h2 className="text-4xl md:text-6xl font-bold text-primary text-glow-cyan mb-4 tracking-tight">
+            Get In Touch
           </h2>
-          <div className="h-0.5 w-32 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent" />
-          <p className="mt-4 text-muted-foreground font-mono">
-            &lt; INITIATE_TRANSMISSION &gt;
+          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-glow" />
+          <p className="mt-6 text-muted-foreground font-mono text-lg">
+            Let's Connect
           </p>
         </motion.div>
 
@@ -54,9 +54,9 @@ const ContactSection = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative p-8 rounded-lg border border-primary/30 bg-card/20 backdrop-blur-sm">
+              <div className="relative p-8 rounded-lg border border-primary/30 bg-card/20 backdrop-blur-sm shadow-2xl shadow-primary/20">
                 {/* Holographic Glow */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 rounded-lg blur-lg opacity-50" />
+                <div className="absolute -inset-2 bg-gradient-to-r from-primary/30 to-accent/30 rounded-lg blur-2xl opacity-60 animate-pulse" />
 
                 <form onSubmit={handleSubmit} className="relative space-y-6">
                   {/* Name Input */}
