@@ -42,12 +42,12 @@ const AcademicSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary text-glow-magenta mb-4">
-            DATA INTEGRITY PANEL
+          <h2 className="text-4xl md:text-6xl font-bold text-secondary text-glow-magenta mb-4 tracking-tight">
+            Academic Background
           </h2>
-          <div className="h-0.5 w-32 mx-auto bg-gradient-to-r from-transparent via-secondary to-transparent" />
-          <p className="mt-4 text-muted-foreground font-mono">
-            &lt; ACADEMIC_RECORDS &gt;
+          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-secondary to-transparent animate-pulse-glow" />
+          <p className="mt-6 text-muted-foreground font-mono text-lg">
+            Educational Journey
           </p>
         </motion.div>
 
@@ -67,11 +67,12 @@ const AcademicSection = () => {
               >
                 {/* Card Container */}
                 <div className={`
-                  relative p-6 rounded-lg border
-                  bg-card/30 backdrop-blur-sm
-                  border-${record.color}/30
+                  relative p-8 rounded-xl border-2
+                  bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-md
+                  border-${record.color}/40
                   hover:border-${record.color}
-                  transition-all duration-300
+                  transition-all duration-500
+                  shadow-2xl hover:shadow-[0_0_30px_rgba(255,0,255,0.3)]
                 `}>
                   {/* Holographic Effect */}
                   <div className={`
