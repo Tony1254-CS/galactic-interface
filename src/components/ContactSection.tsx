@@ -7,9 +7,9 @@ import { toast } from "sonner";
 
 const socialLinks = [
   { icon: Mail, label: "Email", href: "mailto:sabbir@example.com", color: "primary" },
-  { icon: Github, label: "GitHub", href: "https://github.com", color: "foreground" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com", color: "accent" },
-  { icon: Twitter, label: "Twitter", href: "https://twitter.com", color: "secondary" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Tony1254-CS", color: "foreground" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/sabbir-ahmed1254", color: "accent" },
+  { icon: Twitter, label: "Twitter", href: "https://x.com/Sabbir1254", color: "secondary" },
 ];
 
 const ContactSection = () => {
