@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
 const socialLinks = [
-  { icon: Mail, label: "Email", href: "mailto:sabbir@example.com", color: "primary" },
+  { icon: Mail, label: "Email", href: "mailto:sabbirahmed1254@.com", color: "primary" },
   { icon: Github, label: "GitHub", href: "https://github.com/Tony1254-CS", color: "foreground" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/sabbir-ahmed1254", color: "accent" },
   { icon: Twitter, label: "Twitter", href: "https://x.com/Sabbir1254", color: "secondary" },
