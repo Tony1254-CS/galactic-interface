@@ -1,164 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Cosmic Background Palette */
-    --background: 240 30% 3%;
-    --foreground: 180 100% 95%;
+    /* Pure Black Void */
+    --background: 0 0% 0%;
+    /* Stark, sharp white */
+    --foreground: 0 0% 98%;
 
-    /* Card & Surface Elements */
-    --card: 240 25% 8%;
-    --card-foreground: 180 100% 95%;
+    --card: 0 0% 2%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 240 25% 10%;
-    --popover-foreground: 180 100% 95%;
+    --popover: 0 0% 2%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Neon Cyan Primary */
-    --primary: 180 100% 50%;
-    --primary-foreground: 240 30% 5%;
-    --primary-glow: 180 100% 60%;
+    /* Apple-like Monochrome accents */
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 0%;
 
-    /* Magenta/Violet Secondary */
-    --secondary: 280 100% 60%;
-    --secondary-foreground: 240 30% 5%;
-    --secondary-glow: 280 100% 70%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
 
-    /* Electric Blue Accent */
-    --accent: 200 100% 55%;
-    --accent-foreground: 240 30% 5%;
-    --accent-glow: 200 100% 65%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
 
-    /* Muted HUD Elements */
-    --muted: 240 20% 15%;
-    --muted-foreground: 180 50% 70%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
 
-    /* Neon Purple Tertiary */
-    --tertiary: 260 100% 65%;
-    --tertiary-glow: 260 100% 75%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 98%;
 
-    /* Destructive Red Neon */
-    --destructive: 0 100% 60%;
-    --destructive-foreground: 240 30% 5%;
+    --border: 0 0% 10%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 98%;
 
-    /* Border & Input - Subtle Neon */
-    --border: 180 80% 30%;
-    --input: 240 25% 12%;
-    --ring: 180 100% 50%;
-
-    --radius: 0.75rem;
-
-    /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(240 30% 3%) 0%, hsl(260 40% 8%) 50%, hsl(280 30% 5%) 100%);
-    --gradient-neon: linear-gradient(135deg, hsl(180 100% 50%) 0%, hsl(260 100% 65%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(240 30% 3%) 0%, hsl(260 35% 10%) 100%);
-    
-    /* Shadows & Glows */
-    --glow-cyan: 0 0 20px hsl(180 100% 50% / 0.5);
-    --glow-magenta: 0 0 20px hsl(280 100% 60% / 0.5);
-    --glow-blue: 0 0 20px hsl(200 100% 55% / 0.5);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 1rem;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'San Francisco', sans-serif;
+    font-feature-settings: "cv02","cv03","cv04","cv11";
     overflow-x: hidden;
+    letter-spacing: -0.015em;
   }
 
-  /* Scrollbar Styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+  /* Invisible Scrollbar for pure minimalism */
+  ::-webkit-scrollbar { width: 0px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: transparent; }
 
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary) / 0.3);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--primary) / 0.5);
+  ::selection {
+    background: hsl(0 0% 100% / 0.2);
+    color: hsl(var(--foreground));
   }
 }
 
 @layer utilities {
-  /* Neon Text Glow */
-  .text-glow-cyan {
-    text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary) / 0.5);
+  /* Cinematic text gradients (Silver/Titanium) */
+  .text-gradient-silver {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
   }
 
-  .text-glow-magenta {
-    text-shadow: 0 0 10px hsl(var(--secondary)), 0 0 20px hsl(var(--secondary) / 0.5);
-  }
-
-  .text-glow-blue {
-    text-shadow: 0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5);
-  }
-
-  /* Box Glow Effects */
-  .box-glow-cyan {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
-  }
-
-  .box-glow-magenta {
-    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3), 0 0 40px hsl(var(--secondary) / 0.1);
-  }
-
-  /* Holographic Effect */
-  .holographic {
-    background: linear-gradient(135deg, 
-      hsl(var(--primary) / 0.1) 0%, 
-      hsl(var(--secondary) / 0.1) 50%, 
-      hsl(var(--accent) / 0.1) 100%);
-    border: 1px solid hsl(var(--primary) / 0.3);
-    backdrop-filter: blur(10px);
-  }
-
-  /* Scanline Animation */
-  .scanline {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scanline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
-    animation: scan 2s linear infinite;
-  }
-
-  @keyframes scan {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(100vh); }
-  }
-
-  /* Particle Effect */
-  .particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
+  /* Frosted Glass - iOS Style */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 0.5px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 }

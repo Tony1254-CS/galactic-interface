@@ -1,215 +1,135 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import profilePhoto from "@/assets/profile-photo.jpg";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { useRef } from "react";
+
+const pills = [
+  { label: "NASA Space Apps Global Nominee" },
+  { label: "3 Published Research Papers" },
+  { label: "Computer Science & Engineering" },
+];
 
 const HeroSection = () => {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end start"]
+  });
+
+  const yText = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacityText = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-card to-background">
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(50)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.2, 1, 0.2],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Scanline Effect */}
-      <div className="scanline absolute inset-0 pointer-events-none" />
-
-      {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
-          {/* Holographic Photo Module */}
+    <section ref={container} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+      <div className="container mx-auto px-6 md:px-12 relative z-10 pt-32 pb-20">
+        <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto space-y-12">
+          
+          {/* ── Photo ── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            style={{ y: yImage }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="relative"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden noise-overlay"
           >
-            <div className="relative group">
-              {/* Outer Hexagonal Glow */}
-              <div className="absolute -inset-8 bg-gradient-to-r from-primary via-secondary to-accent rounded-full opacity-40 blur-3xl group-hover:opacity-70 transition-opacity duration-500 animate-pulse" />
-              
-              {/* Photo Container */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80">
-                {/* Animated Border */}
-                <div className="absolute inset-0 rounded-full border-2 border-primary animate-pulse-glow" />
-                
-                {/* Photo */}
-                <div className="absolute inset-2 rounded-full overflow-hidden border-4 border-primary/30">
-                  <img
-                    src={profilePhoto}
-                    alt="Sabbir Ahmed"
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Holographic Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-secondary/10 mix-blend-overlay" />
-                </div>
-
-                {/* Floating Particles */}
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-primary rounded-full"
-                    style={{
-                      left: `${50 + 45 * Math.cos((i * Math.PI * 2) / 8)}%`,
-                      top: `${50 + 45 * Math.sin((i * Math.PI * 2) / 8)}%`,
-                    }}
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                    }}
-                  />
-                ))}
-
-                {/* Scan Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent"
-                  animate={{
-                    y: ["-100%", "100%"],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-              </div>
-            </div>
+            <img
+              src={profilePhoto}
+              alt="Sabbir Ahmed"
+              className="w-full h-full object-cover grayscale contrast-[1.25] brightness-90"
+            />
           </motion.div>
 
-          {/* Name & Title Projection */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center lg:text-left space-y-6"
-          >
-            {/* Name Hologram */}
-            <div className="space-y-2">
-              <motion.div
-                className="inline-block"
-                animate={{
-                  textShadow: [
-                    "0 0 10px hsl(var(--primary))",
-                    "0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--secondary))",
-                    "0 0 10px hsl(var(--primary))",
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <h1 className="text-5xl md:text-7xl font-bold text-primary text-glow-cyan tracking-wider">
-                  SABBIR AHMED
-                </h1>
-              </motion.div>
-              <div className="h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
-            </div>
-
-            {/* Tagline */}
-            <motion.p
-              className="text-xl md:text-2xl text-foreground/90 font-light tracking-wide"
-              animate={{
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
+          {/* ── Text ── */}
+          <motion.div style={{ y: yText, opacity: opacityText }} className="space-y-8 pt-4">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[clamp(3.5rem,10vw,8rem)] font-black tracking-tighter leading-[0.85] text-white"
             >
-              Exploring code, intelligence, and cyber frontiers
+              Sabbir Ahmed
+            </motion.h1>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center gap-6"
+            >
+              <div className="text-center space-y-3">
+                <p className="text-[11px] font-bold tracking-[0.2em] text-white/50 uppercase">
+                  Dhaka, Bangladesh
+                </p>
+                <p className="text-sm font-semibold tracking-wide text-white/70">
+                  3 Published Papers <span className="text-white/20 mx-2">•</span> NASA Global Nominee <span className="text-white/20 mx-2">•</span> Innovation World Cup 2025 Global Finalist
+                </p>
+                <p className="text-sm font-semibold tracking-wide text-white/90">
+                  Machine Learning <span className="text-white/20 mx-2">•</span> Cybersecurity <span className="text-white/20 mx-2">•</span> Applied AI
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[17px] md:text-xl text-muted-foreground font-medium tracking-tight leading-relaxed max-w-2xl mx-auto pt-4"
+            >
+              Building intelligent systems that transform data into decisions.
             </motion.p>
+          </motion.div>
 
-            {/* Data Lines */}
-            <div className="space-y-3 text-muted-foreground font-mono text-sm">
-              <motion.div
-                className="flex items-center gap-3 justify-center lg:justify-start"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
+          {/* ── CTAs ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-center gap-4 pt-8"
+          >
+            <Magnetic>
+              <a
+                href="#proof-of-work"
+                className="px-8 py-3.5 rounded-full bg-white text-black text-sm font-bold tracking-tight hover:scale-105 transition-transform duration-300 inline-block"
               >
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse-glow" />
-                <span className="text-primary/80">Machine Learning</span>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-3 justify-center lg:justify-start"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
+                Explore Work
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#publications"
+                className="px-8 py-3.5 rounded-full bg-white/5 text-white text-sm font-bold tracking-tight hover:bg-white/10 transition-colors duration-300 inline-block"
               >
-                <div className="w-2 h-2 bg-secondary rounded-full animate-pulse-glow" />
-                <span className="text-secondary/80">Cybersecurity</span>
-              </motion.div>
-              <motion.div
-                className="flex items-center gap-3 justify-center lg:justify-start"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
+                Publications
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#contact"
+                className="px-8 py-3.5 rounded-full border border-white/10 text-white text-sm font-bold tracking-tight hover:bg-white/5 transition-colors duration-300 inline-block"
               >
-                <div className="w-2 h-2 bg-accent rounded-full animate-pulse-glow" />
-                <span className="text-accent/80">AI Systems & Experimentation</span>
-              </motion.div>
-            </div>
+                Resume
+              </a>
+            </Magnetic>
+          </motion.div>
 
-            {/* HUD Elements */}
-            <div className="flex gap-4 justify-center lg:justify-start mt-8">
-              <motion.div
-                className="px-4 py-2 border border-primary/30 rounded bg-primary/5 font-mono text-xs text-primary"
-                whileHover={{ borderColor: "hsl(var(--primary))", boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
-              >
-                STATUS: ONLINE
-              </motion.div>
-              <motion.div
-                className="px-4 py-2 border border-accent/30 rounded bg-accent/5 font-mono text-xs text-accent"
-                whileHover={{ borderColor: "hsl(var(--accent))", boxShadow: "0 0 20px hsl(var(--accent) / 0.3)" }}
-              >
-                3RD YEAR CSE
-              </motion.div>
+          {/* ── Recognized By ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="pt-24 w-full flex flex-col items-center gap-8"
+          >
+            <p className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground/60">Published & Recognized By</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale">
+              <span className="font-serif text-lg font-bold text-white tracking-tight">Springer</span>
+              <span className="font-serif text-lg font-bold text-white tracking-tight">Taylor & Francis</span>
+              <span className="font-serif text-lg text-white tracking-tight">Atlantis Press <span className="font-sans text-xs text-white/50 ml-1">/ Springer Nature</span></span>
+              <span className="font-sans text-lg font-black italic text-white tracking-tighter">NASA Space Apps</span>
+              <span className="font-sans text-lg font-bold text-white tracking-tighter uppercase">Innovation World Cup</span>
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-          }}
-        >
-          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2">
-            <motion.div
-              className="w-1 h-2 bg-primary rounded-full"
-              animate={{
-                y: [0, 12, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
-            />
-          </div>
-        </motion.div>
       </div>
     </section>
   );

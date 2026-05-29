@@ -1,171 +1,68 @@
 import { motion } from "framer-motion";
-import { Trophy, Rocket, BookOpen, Award, Star, Users, Lightbulb, Drama } from "lucide-react";
+import { GlassPanel } from "@/components/ui/GlassPanel";
 
 const achievements = [
   {
-    icon: Rocket,
     title: "NASA Space Apps Challenge 2025",
-    subtitle: "Regional 1st Runner-Up",
-    color: "primary",
+    items: ["Global Nominee", "Regional 1st Runner-Up"]
   },
   {
-    icon: Star,
-    title: "NASA Space Apps 2025",
-    subtitle: "Global Nominee",
-    color: "secondary",
+    title: "Innovation World Cup 2025",
+    items: ["Global Finalist"]
   },
   {
-    icon: BookOpen,
-    title: "Published Researcher",
-    subtitle: "BIM 2025 (Springer LNNS)",
-    color: "accent",
-  },
-  {
-    icon: Award,
-    title: "Math Olympiad",
-    subtitle: "Division Level",
-    color: "tertiary",
-  },
-  {
-    icon: Users,
-    title: "Debate Competitions",
-    subtitle: "Multiple Wins",
-    color: "primary",
-  },
-  {
-    icon: Trophy,
-    title: "Poster Design Competition",
-    subtitle: "Winner",
-    color: "secondary",
-  },
-  {
-    icon: Lightbulb,
-    title: "Idea / Innovation Contest",
-    subtitle: "Participant",
-    color: "accent",
-  },
-  {
-    icon: Drama,
-    title: "Drama & Stage Performances",
-    subtitle: "Creative Arts",
-    color: "tertiary",
-  },
+    title: "3 Published Papers",
+    subtitle: "Across International Publishers",
+    items: ["Springer", "Taylor & Francis", "Atlantis Press / Springer Nature"]
+  }
 ];
 
-const AchievementsSection = () => {
-  return (
-    <section className="relative min-h-screen py-20 overflow-hidden">
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+const AchievementsSection = () => (
+  <section id="achievements" className="py-32 bg-background border-t border-white/5">
+    <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-16"
+      >
+        <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-black tracking-tighter text-white leading-none">
+          Selected Achievements.
+        </h2>
+      </motion.div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold text-primary text-glow-cyan mb-4 tracking-tight">
-            Achievements
-          </h2>
-          <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse-glow" />
-          <p className="mt-6 text-muted-foreground font-mono text-lg">
-            Recognition & Honors
-          </p>
-        </motion.div>
-
-        {/* Achievement Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {achievements.map((achievement, index) => {
-            const Icon = achievement.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -10,
-                  transition: { duration: 0.2 }
-                }}
-                className="relative group"
-              >
-                {/* Card */}
-                <div className={`
-                  relative p-8 rounded-xl border-2
-                  bg-gradient-to-br from-card/60 to-card/30 backdrop-blur-md
-                  border-${achievement.color}/40
-                  hover:border-${achievement.color}
-                  transition-all duration-500
-                  shadow-2xl hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]
-                `}>
-                  {/* Glow Effect */}
-                  <div className={`
-                    absolute -inset-0.5 rounded-lg opacity-0 group-hover:opacity-100
-                    bg-gradient-to-r from-${achievement.color}/20 to-${achievement.color}/5
-                    blur-sm transition-opacity duration-300
-                  `} />
-
-                  {/* Content */}
-                  <div className="relative space-y-4">
-                    {/* Icon */}
-                    <div className="flex justify-center">
-                      <motion.div
-                        className={`
-                          w-16 h-16 rounded-full flex items-center justify-center
-                          border-2 border-${achievement.color}/50
-                          bg-${achievement.color}/10
-                        `}
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <Icon className={`w-8 h-8 text-${achievement.color}`} />
-                      </motion.div>
-                    </div>
-
-                    {/* Scan Line */}
-                    <motion.div
-                      className={`h-0.5 w-full bg-gradient-to-r from-transparent via-${achievement.color} to-transparent`}
-                      initial={{ x: "-100%" }}
-                      whileInView={{ x: "100%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
-                    />
-
-                    {/* Text */}
-                    <div className="text-center space-y-2">
-                      <h3 className={`font-bold text-${achievement.color} text-sm tracking-wide`}>
-                        {achievement.title}
-                      </h3>
-                      <p className="text-muted-foreground text-xs font-mono">
-                        {achievement.subtitle}
-                      </p>
-                    </div>
-
-                    {/* Corner Decorations */}
-                    <div className={`absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-${achievement.color}/50`} />
-                    <div className={`absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-${achievement.color}/50`} />
-                    <div className={`absolute bottom-2 left-2 w-3 h-3 border-l-2 border-b-2 border-${achievement.color}/50`} />
-                    <div className={`absolute bottom-2 right-2 w-3 h-3 border-r-2 border-b-2 border-${achievement.color}/50`} />
-                  </div>
-                </div>
-
-                {/* Data Stream */}
-                <motion.div
-                  className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100"
-                  initial={false}
-                >
-                  <div className={`w-0.5 h-8 bg-gradient-to-b from-${achievement.color} to-transparent`} />
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {achievements.map((a, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="h-full"
+          >
+            <div className="h-full p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/5 flex flex-col justify-between gap-12 group transition-all duration-500 hover:bg-white/[0.04]">
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold text-white tracking-tight leading-snug">{a.title}</h3>
+                {a.subtitle && (
+                  <p className="text-[13px] font-bold tracking-widest uppercase text-white/40">{a.subtitle}</p>
+                )}
+              </div>
+              <ul className="space-y-4">
+                {a.items.map((item, idx) => (
+                  <li key={idx} className="text-base text-white/70 font-semibold flex items-start gap-3">
+                    <span className="text-white/20 mt-1">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default AchievementsSection;
